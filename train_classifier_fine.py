@@ -122,16 +122,16 @@ def main():
     parser.add_argument('--class_num', type=int, default=10, help='target number')
     parser.add_argument("--learning_rate", default=0.001, type=float, help="learning rate")
     parser.add_argument("--epoch", default=300, type=int, help="number of max epoch")
-    parser.add_argument('--input_dim', type=int, default=28, help='이미지 가로 차원 수 ')
-    parser.add_argument('--input_dim_channel',type=int,default=1, help = '이미지 채널 개수')
+    parser.add_argument('--input_dim', type=int, default=32, help='이미지 가로 차원 수 ')
+    parser.add_argument('--input_dim_channel',type=int,default=3, help = '이미지 채널 개수')
 
     # Data and train
-    parser.add_argument('--dataset', type=str, default='MNIST', help='dataset CIFAR or MNIST')
+    parser.add_argument('--dataset', type=str, default='CIFAR', help='dataset CIFAR or MNIST')
     parser.add_argument('--batch_size', type=int, default=128, help='batch size for training [default: 128]')
     parser.add_argument("--gpu_device", default=0, type=int, help="the number of gpu to be used")
     parser.add_argument('--printevery', default=100, type=int, help='log , print every % iteration')
     parser.add_argument('--data_size', default=50000, type=int, help='dataset size(n)')
-    parser.add_argument('--experiment', type=str, default='MNIST', help='experiment name')
+    parser.add_argument('--experiment', type=str, default='CIFAR_temptemp', help='experiment name')
 
     args = parser.parse_args()
 
@@ -143,7 +143,19 @@ def main():
         print(f"{args.dataset}_loaded")
 
     args.model = CNN(args).cuda(args.gpu_device)
+    model_parameter = args.model.state_dict()
     print('model created -- gpu version!')
+    parameter = torch.load(f'./parameter/{args.dataset}_ready_fine_tune_datasize_{args.data_size}.pth',
+                           map_location=f'cuda:{args.gpu_device}')
+
+    # 1. filter out unnecessary keys
+    pretrained_dict = {k: v for k, v in parameter.items() if k in model_parameter}
+    # 2. overwrite entries in the existing state dict
+    model_parameter.update(pretrained_dict)
+    # 3. load the new state dict
+    args.model.load_state_dict(model_parameter)
+    print("loaded pretrained parameter (only convolution filter)!")
+
     train_loss_list = []
     valid_loss_list = []
     gc.collect()

@@ -34,7 +34,7 @@ def train(args, train_loss_list, valid_loss_list):
     start = time.time()
 
     writer = SummaryWriter(f'./runs/{args.experiment}')
-    early_stopping = EarlyStopping(patience= 15, verbose=False, path = f'./parameter/{args.experiment}.pth')
+    early_stopping = EarlyStopping(patience= 15, verbose=True, path = f'./parameter/{args.experiment}.pth')
 
     for e in range(args.epoch):
         print("\n===> epoch %d" % e)
@@ -82,14 +82,8 @@ def train(args, train_loss_list, valid_loss_list):
 
                 writer.add_scalar('train_loss', avg_loss, iters+1)
                 writer.add_scalar('valid_loss', val_loss / len(args.loader.valid_iter), iters+1)
-                # total_loss = 0
-                # if args.dataset == "MNIST":
-                #     show_visual_progress(args, rows=5, title=f'{args.experiment}_{iters}')
-                #     show_filter_progress(args, title=f'{args.experiment}_{iters}')
-                # else:
-                #     show_visual_progress(args, rows=3, title=f'{args.experiment}_{iters}')
-                #     show_filter_progress(args, title=f'{args.experiment}_{iters}')
-                # plt.close('all')
+                total_loss = 0
+
                 early_stopping(val_loss / len(args.loader.valid_iter) , args.model)
 
                 if early_stopping.early_stop:
@@ -106,93 +100,12 @@ def train(args, train_loss_list, valid_loss_list):
         with open(f'./loss/valid_loss_{args.experiment}.pickle', 'wb') as f:
             pickle.dump(valid_loss_list, f)
 
-        # torch.save(args.model.state_dict(), f'./parameter/{e}_parameter_{args.experiment}.pth')
 
         for name, param in args.model.named_parameters():
             writer.add_histogram(name, param.clone().cpu().data.numpy(), e)
 
 
-def show_visual_progress(args, rows=5, title=None):
 
-    if args.dataset == "MNIST":
-
-        fig = plt.figure(figsize=(10, 8))
-        if title:
-            plt.title(title)
-
-        image_rows = []
-        for idx, (feature, label) in enumerate(args.loader.test_iter):
-            if rows == idx:
-                break
-            feature = feature.cuda(args.gpu_device)
-            images = args.model(feature).detach().cpu().numpy().reshape(feature.size(0),args.input_dim, args.input_dim)
-            images_idxs = [list(label.numpy()).index(x) for x in range(10)]
-            combined_images = np.concatenate([images[x].reshape(args.input_dim, args.input_dim) for x in images_idxs], 1)
-            image_rows.append(combined_images)
-
-        plt.imshow(np.concatenate(image_rows))
-        plt.savefig('./img/'+title+'.png',dpi=300)
-        # plt.show()
-
-    else:
-
-        fig = plt.figure(figsize=(20,16))
-        if title:
-            plt.title(title)
-
-        image_rows = []
-        for idx, (feature, label) in enumerate(args.loader.test_iter):
-            if rows == idx:
-                break
-            feature = feature.cuda(args.gpu_device)
-            images = args.model(feature).detach().cpu().numpy().reshape(feature.size(0),args.input_dim_channel,args.input_dim, args.input_dim)
-            images_idxs = [list(label.numpy()).index(x) for x in np.random.randint(0,10,5)]
-            combined_images = np.concatenate([images[x].reshape(args.input_dim_channel,args.input_dim, args.input_dim) for x in images_idxs], 1)
-            image_rows.append(combined_images)
-        
-        img = np.concatenate(image_rows, axis=2)
-        img = img / np.amax(img)
-        img = np.clip(img,0,1)
-        plt.imshow(img.reshape(rows*args.input_dim, args.input_dim*5, args.input_dim_channel))
-        plt.savefig('./img/'+title+'.png',dpi=500)
-        # plt.show()
-
-
-
-
-
-
-def show_filter_progress(args,title=None):
-
-    if args.dataset == 'CIFAR':
-
-        conv1 = args.model.state_dict()['conv1.weight'].detach().cpu().numpy().reshape(3,100,5,5)
-
-        for chanel_ind , chanel in enumerate(conv1):
-
-            fig = plt.figure(figsize=(10,3))
-            for ind, img in enumerate(chanel):
-                ax = fig.add_subplot(5, 20, ind + 1)
-                ax.imshow(img, interpolation='nearest',cmap = 'gray')
-                ax.set_xticks([]), ax.set_yticks([])
-                # ax.set_title(f'{chanel_ind}_filter_{ind + 1}')
-            # fig.set_size_inches(np.array(fig.get_size_inches()) * 10)
-            # plt.tight_layout()
-            plt.savefig(f'./filter/'+title+f'_{chanel_ind}.png',dpi=300)
-    else:
-
-        conv1 = args.model.state_dict()['conv1.weight'].detach().cpu().numpy().reshape(20, 7, 7)
-        fig = plt.figure(figsize=(10, 3))
-
-        for ind, img in enumerate(conv1):
-            ax = fig.add_subplot(2, 10, ind + 1)
-            ax.imshow(img, interpolation='nearest',cmap = 'gray')
-            ax.set_xticks([]), ax.set_yticks([])
-            ax.set_title(f'filter_{ind + 1}')
-        # fig.set_size_inches(np.array(fig.get_size_inches()) * 10)
-        plt.subplots_adjust(bottom=0.1,top=0.1,left=0.1,right=0.1,wspace=0.1,hspace=0.1)
-        plt.tight_layout()
-        plt.savefig('./filter/'+title+'.png',dpi=300)
 
 
 # %% main
