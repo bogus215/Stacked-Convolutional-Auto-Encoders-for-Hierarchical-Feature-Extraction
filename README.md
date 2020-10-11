@@ -6,3 +6,26 @@
 - 모델 architecture를 구성한 코드 `model.py`
 - 훈련을 진행하는 `train.py`
 - 논문에 소개된 여러 실험을 한번에 돌릴 수 있는 experiment.py
+
+## Paper Fig 1.
+- 논문이 공개한 CAE(convolutional auto-encoder) 모델이 학습한 이미지 필터를 시각화한 그림입니다. 
+- (a),(b),(c),(d) 그림은 `model.py`의 네 가지 모델 `CAE1,CAE2,CAE3,CAR4`를 MNIST 데이터에 순서대로 적용한 것으로 `train_autoencoder.py`를 통해 결과를 재연할 수 있습니다.
+
+## Paper Fig 2.
+- 논문이 공개한 CAE(convolutional auto-encoder) 모델이 학습한 이미지 필터를 시각화한 그림입니다. 
+- (a),(b),(c),(d) 그림은 `model.py`의 네 가지 모델 `CAE1,CAE2,CAE3,CAR4`를 CIFAR10 데이터에 순서대로 적용한 것으로 `train_autoencoder.py`를 통해 결과를 재연할 수 있습니다.
+
+## Table 1 and 2.
+- 논문이 제안한 CNN 모델을 CAE image filter로 fine-tuning 했을 때, 성능 차이를 보고한 자료입니다.
+- 데이터 개수에 따라 fine-tuning 효과가 얼마만큼 차이나는지 파악할 수 있는 자료입니다.
+- Table 1에서 사용한 데이터는 MNIST이고, Table 2에서 사용한 데이터는 CIFAR 10입니다.
+
+### CAE 모델 학습
+- 논문이 제안한 모델을 CAE image filter로 fine-tuning 하기 위해서는 먼저 CAE를 학습해야합니다.
+- 이것은 `model.py`의 `CNN_for_cae` 모델과 `train_autoencoder_fine.py`를 통해 구현할 수 있습니다.
+
+### CNN 모델 학습
+- fine-tuning을 거치지 않은 CNN 모델 학습은 `model.py`의 `CNN` 모델과 `train_classifier.py` 코드로 구현할 수 있습니다.
+
+### CNN 모델 fine-tuning 학습
+- fine-tuning을 거친 CNN 모델 학습은 `model.py`의 `CNN` 모델과 `train_classifier_fine.py` 코드로 구현할 수 있습니다.
