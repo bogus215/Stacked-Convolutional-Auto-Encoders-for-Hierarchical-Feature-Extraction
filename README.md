@@ -13,7 +13,8 @@
 ----------------------------------
 <div>
   <img width="569" alt="fig1" src="https://user-images.githubusercontent.com/53327766/95677312-9d62dc80-0bff-11eb-943e-71ee8d30fa9d.PNG">
- </div>
+ </div> 
+
 ----------------------------------
     
 ## Paper Fig 2.
