@@ -1,5 +1,5 @@
 # Stacked-Convolutional-Auto-Encoders-for-Hierarchical-Feature-Extraction
-본 공간은 "Stacked Convolutional Auto-Encoders for Hierarchical Feature Extraction" 논문을 pytorch로 구현한 코드를 공유하기 위해 설립된 공간입니다.
+본 공간은 [Stacked Convolutional Auto-Encoders for Hierarchical Feature Extraction](http://people.idsia.ch/~ciresan/data/icann2011.pdf) 논문을 pytorch로 구현한 코드를 공유하기 위해 설립된 공간입니다.
 
 ## Code 개요
 - Mnist 데이터와 CIFAR10 데이터를 로드하여 미니 배치를 만드는 코드인 `loader.py`
