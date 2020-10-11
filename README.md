@@ -5,7 +5,7 @@
 - Mnist 데이터와 CIFAR10 데이터를 로드하여 미니 배치를 만드는 코드인 `loader.py`
 - 모델 architecture를 구성한 코드 `model.py`
 - 훈련을 진행하는 `train.py`
-- 논문에 소개된 여러 실험을 한번에 돌릴 수 있는 experiment.py
+- 논문에 소개된 여러 실험을 한번에 돌릴 수 있는 `experiment.py`
 
 ## Paper Fig 1.
 - 논문이 공개한 CAE(convolutional auto-encoder) 모델이 학습한 이미지 필터를 시각화한 그림입니다. 
