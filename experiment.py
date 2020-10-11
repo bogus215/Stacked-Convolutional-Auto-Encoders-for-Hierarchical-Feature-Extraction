@@ -16,8 +16,6 @@ for exp in [1,2,3,4]:
         print('failed')
 
 
-
-
 #%% mnist
 for exp in [1,2,3,4]:
     script_descriptor = open("train_autoencoder.py", encoding ='utf-8')
@@ -33,13 +31,11 @@ for exp in [1,2,3,4]:
         print('failed')
 
 
-
-
 #%% classification
 batch_size = [128,64,32]
 for data in ["CIFAR","MNIST"]:
+# for data in ["CIFAR"]:
     for ind, data_size in enumerate(['50000','10000','1000']):
-
         script_descriptor = open("train_classifier.py", encoding ='utf-8')
         a_script = script_descriptor.read()
         if data == "MNIST":
@@ -48,7 +44,7 @@ for data in ["CIFAR","MNIST"]:
         else:
 
             sys.argv = ["train_classifier.py", "--epoch", "1000",'--printevery','100','--experiment',f'{data}_classification_datasize_{data_size}','--dataset',f'{data}',
-                       '--input_dim','32','--input_dim_channel','3' , '--batch_size' , f"{batch_size[ind]}"]
+                       '--input_dim','32','--input_dim_channel','3' , '--batch_size' ,f'{batch_size[ind]}']
 
 
         try:
@@ -99,7 +95,6 @@ for data in ["CIFAR","MNIST"]:
 
             sys.argv = ["train_autoencoder_fine.py", "--epoch", "1000",'--printevery','100','--experiment',f'{data}_ready_fine_tune_datasize_{data_size}','--dataset',f'{data}',
                        '--input_dim','32','--input_dim_channel','3' , '--batch_size' , f"{batch_size[ind]}"]
-
 
         try:
             print(sys.argv)
@@ -112,7 +107,10 @@ for data in ["CIFAR","MNIST"]:
 #%% classification using pretrained filter
 batch_size = [128,64,32]
 for data in ["CIFAR","MNIST"]:
+# for data in ["CIFAR",]:
     for ind, data_size in enumerate(['50000','10000','1000']):
+
+    # for ind, data_size in enumerate(['50000']):
 
         script_descriptor = open("train_classifier_fine.py", encoding ='utf-8')
         a_script = script_descriptor.read()

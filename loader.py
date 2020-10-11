@@ -11,9 +11,9 @@ class loader():
         mnist_transform = transforms.Compose([transforms.ToTensor()])
         download_root = './MNIST_DATASET'
 
-        dataset = MNIST(download_root, transform=mnist_transform, train=True, download=False)
+        dataset = MNIST(download_root, transform=mnist_transform, train=True, download=True)
         train_dataset , valid_dataset = random_split(dataset , [50000,10000])
-        test_dataset = MNIST(download_root, transform=mnist_transform, train=False, download=False)
+        test_dataset = MNIST(download_root, transform=mnist_transform, train=False, download=True)
 
 
         self.batch_size = args.batch_size
@@ -27,12 +27,14 @@ class loader_CIFAR10():
     def __init__(self, args):
         super(loader_CIFAR10, self).__init__()
 
-        cifar_transform = transforms.Compose([transforms.ToTensor()])
+        cifar_transform = transforms.Compose([transforms.ToTensor(),
+                                              transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
         download_root = './CIFAR10_DATASET'
 
-        dataset = CIFAR10(download_root, transform=cifar_transform, train=True, download=False)
+        dataset = CIFAR10(download_root, transform=cifar_transform, train=True, download=True)
         train_dataset , valid_dataset = random_split(dataset , [40000,10000])
-        test_dataset = CIFAR10(download_root, transform=cifar_transform, train=False, download=False)
+        test_dataset = CIFAR10(download_root, transform=cifar_transform, train=False, download=True)
 
 
         self.batch_size = args.batch_size
@@ -47,12 +49,13 @@ class c_loader():
         super(c_loader, self).__init__()
 
         mnist_transform = transforms.Compose([transforms.ToTensor()])
+
         download_root = './MNIST_DATASET'
 
-        dataset = MNIST(download_root, transform=mnist_transform, train=True, download=False)
+        dataset = MNIST(download_root, transform=mnist_transform, train=True, download=True)
         dataset = Subset(dataset,random.sample(range(dataset.__len__()) , args.data_size))
         train_dataset , valid_dataset = random_split(dataset , [int(dataset.__len__()*0.8), dataset.__len__() - int(dataset.__len__()*0.8)])
-        test_dataset = MNIST(download_root, transform=mnist_transform, train=False, download=False)
+        test_dataset = MNIST(download_root, transform=mnist_transform, train=False, download=True)
 
         del dataset
 
@@ -66,14 +69,14 @@ class c_loader_CIFAR10():
 
     def __init__(self, args):
         super(c_loader_CIFAR10, self).__init__()
-
-        cifar_transform = transforms.Compose([transforms.ToTensor()])
+        cifar_transform = transforms.Compose([transforms.ToTensor(),
+                                              transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
         download_root = './CIFAR10_DATASET'
 
-        dataset = CIFAR10(download_root, transform=cifar_transform, train=True, download=False)
+        dataset = CIFAR10(download_root, transform=cifar_transform, train=True, download=True)
         dataset = Subset(dataset,random.sample(range(dataset.__len__()) , args.data_size))
         train_dataset , valid_dataset = random_split(dataset , [int(dataset.__len__()*0.8), dataset.__len__() - int(dataset.__len__()*0.8)])
-        test_dataset = CIFAR10(download_root, transform=cifar_transform, train=False, download=False)
+        test_dataset = CIFAR10(download_root, transform=cifar_transform, train=False, download=True)
         del dataset
 
         self.batch_size = args.batch_size

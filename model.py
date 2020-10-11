@@ -129,12 +129,14 @@ class CNN(nn.Module):
 
         self.img = args.input_dim
         self.img_dim = args.input_dim_channel
-        self.Co = args.kernel_num
         self.conv1 = nn.Conv2d(self.img_dim,100,(5,5))
-        self.max1 = nn.MaxPool2d(2)
+        self.batch1 = nn.BatchNorm2d(100)
+        self.max1 = nn.MaxPool2d((2,2),2)
         self.conv2 = nn.Conv2d(100,150,(5,5))
-        self.max2 = nn.MaxPool2d(2)
+        self.batch2 = nn.BatchNorm2d(150)
+        self.max2 = nn.MaxPool2d((2,2),2)
         self.conv3 = nn.Conv2d(150,200,(3,3))
+        self.batch3 = nn.BatchNorm2d(200)
 
         if args.dataset == "MNIST":
             self.classifier = nn.Sequential(nn.Linear(800, 300),nn.ReLU(),
@@ -148,16 +150,16 @@ class CNN(nn.Module):
     def forward(self,x):
         x = self.conv1(x)
         x = x * x.tanh()
-        x = self.max1(x)
+        x = self.batch1(self.max1(x))
         x = self.conv2(x)
         x = x * x.tanh()
-        x = self.max2(x)
-        x = self.conv3(x)
+        x = self.batch2(self.max2(x))
+        x = self.batch3(self.conv3(x))
         x = x * x.tanh()
         x = x.view(-1,np.prod(x.size()[1:]))
         x = self.classifier(x)
-
-        return F.softmax(x,dim =1)
+        x = F.softmax(x,dim =1)
+        return x
 
 
 # %% CNN for CAE
@@ -169,6 +171,7 @@ class CNN_for_cae(nn.Module):
         self.img_dim = args.input_dim_channel
         self.Co = args.kernel_num
         self.Ks = args.kernel_sizes
+
         self.b_e1 = nn.Parameter(torch.randn(100))
         self.b_e2 = nn.Parameter(torch.randn(150))
         self.b_e3 = nn.Parameter(torch.randn(200))
@@ -222,11 +225,9 @@ def my_loss(output,target):
     loss = torch.mean((output - target) ** 2)
     return loss
 
-
 class binary_noise(nn.Module):
     def __init__(self,p):
         super(binary_noise, self).__init__()
-
         self.p = p
 
     def forward(self,img):
