@@ -39,6 +39,15 @@
  
 - 논문이 공개한 CAE(convolutional auto-encoder) 모델이 학습한 이미지 필터를 시각화한 그림입니다. 
 - (a),(b),(c),(d) 그림은 `model.py`의 네 가지 모델 `CAE1,CAE2,CAE3,CAR4`를 CIFAR10 데이터에 순서대로 적용한 것으로 `train_autoencoder.py`를 통해 결과를 재연할 수 있습니다.
+- 재연 결과는 **Paper Fig 2. reproduction**과 같습니다. 
+
+## Paper Fig 2. reproduction 
+----------------------------------
+<div>
+  <img width="569" alt="fig3" src="https://user-images.githubusercontent.com/53327766/95677825-36472700-0c03-11eb-998e-ec2e10d8fa46.png">
+ </div> 
+
+----------------------------------
 
 ## Table 1 and 2.
 - 논문이 제안한 CNN 모델을 CAE image filter로 fine-tuning 했을 때, 성능 차이를 보고한 자료입니다.
