@@ -30,6 +30,13 @@
   
 
 ## Paper Fig 2.
+----------------------------------
+<div>
+  <img width="259" alt="fig2" src="https://user-images.githubusercontent.com/53327766/95677665-ecaa0c80-0c01-11eb-92d6-92be880cf68b.PNG">
+</div> 
+ 
+---------------------------------- 
+ 
 - 논문이 공개한 CAE(convolutional auto-encoder) 모델이 학습한 이미지 필터를 시각화한 그림입니다. 
 - (a),(b),(c),(d) 그림은 `model.py`의 네 가지 모델 `CAE1,CAE2,CAE3,CAR4`를 CIFAR10 데이터에 순서대로 적용한 것으로 `train_autoencoder.py`를 통해 결과를 재연할 수 있습니다.
 
