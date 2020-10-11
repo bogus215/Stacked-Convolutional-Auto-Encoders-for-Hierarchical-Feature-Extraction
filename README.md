@@ -13,6 +13,7 @@
 ----------------------------------
 <div>
   <img width="569" alt="fig1" src="https://user-images.githubusercontent.com/53327766/95677312-9d62dc80-0bff-11eb-943e-71ee8d30fa9d.PNG">
+  ![s](https://user-images.githubusercontent.com/53327766/95677435-85d82380-0c00-11eb-916b-72a20c5d6bff.png)
  </div> 
 
 ----------------------------------
