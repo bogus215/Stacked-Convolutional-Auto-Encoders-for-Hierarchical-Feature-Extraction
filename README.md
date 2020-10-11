@@ -52,8 +52,8 @@
 ## Paper Table 1 and 2 with reproduction result 
 ----------------------------------
 <div>
-<img width="569" alt="fig3" src="https://github.com/bogus215/Stacked-Convolutional-Auto-Encoders-for-Hierarchical-Feature-Extraction/files/5361223/CNN__.pdf">
-<img width="569" alt="fig3" src="https://github.com/bogus215/Stacked-Convolutional-Auto-Encoders-for-Hierarchical-Feature-Extraction/files/5361222/CAE__CNN__.pdf">
+<img width="569" alt="fig3" src="https://user-images.githubusercontent.com/53327766/95680877-8e882400-0c17-11eb-871e-df0de4737bf3.png">
+<img width="569" alt="fig3" src="https://user-images.githubusercontent.com/53327766/95680878-8fb95100-0c17-11eb-8287-a792771fb945.png">
 </div>
  
 ----------------------------------
