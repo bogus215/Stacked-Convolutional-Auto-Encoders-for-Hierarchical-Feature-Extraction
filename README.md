@@ -49,7 +49,15 @@
 
 ----------------------------------
 
-## Table 1 and 2.
+## Paper Table 1 and 2 with reproduction result 
+----------------------------------
+<div>
+<img width="569" alt="fig3" src="https://github.com/bogus215/Stacked-Convolutional-Auto-Encoders-for-Hierarchical-Feature-Extraction/files/5361223/CNN__.pdf">
+<img width="569" alt="fig3" src="https://github.com/bogus215/Stacked-Convolutional-Auto-Encoders-for-Hierarchical-Feature-Extraction/files/5361222/CAE__CNN__.pdf">
+</div>
+ 
+----------------------------------
+
 - 논문이 제안한 CNN 모델을 CAE image filter로 fine-tuning 했을 때, 성능 차이를 보고한 자료입니다.
 - 데이터 개수에 따라 fine-tuning 효과가 얼마만큼 차이나는지 파악할 수 있는 자료입니다.
 - Table 1에서 사용한 데이터는 MNIST이고, Table 2에서 사용한 데이터는 CIFAR 10입니다.
