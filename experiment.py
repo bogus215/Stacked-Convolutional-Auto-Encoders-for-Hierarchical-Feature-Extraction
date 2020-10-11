@@ -34,7 +34,6 @@ for exp in [1,2,3,4]:
 #%% classification
 batch_size = [128,64,32]
 for data in ["CIFAR","MNIST"]:
-# for data in ["CIFAR"]:
     for ind, data_size in enumerate(['50000','10000','1000']):
         script_descriptor = open("train_classifier.py", encoding ='utf-8')
         a_script = script_descriptor.read()
@@ -84,10 +83,7 @@ for data in ["CIFAR","MNIST"]:
 #%% classification using pretrained filter
 batch_size = [128,64,32]
 for data in ["CIFAR","MNIST"]:
-# for data in ["CIFAR",]:
     for ind, data_size in enumerate(['50000','10000','1000']):
-
-    # for ind, data_size in enumerate(['50000']):
 
         script_descriptor = open("train_classifier_fine.py", encoding ='utf-8')
         a_script = script_descriptor.read()
@@ -106,3 +102,31 @@ for data in ["CIFAR","MNIST"]:
             gc.collect()
         except:
             print('failed')
+
+#%% Final test : Paper Table 1 and Table 2 reproduction
+for data in ["MNIST","CIFAR"]:
+    for exp in ['raw','fine']:
+
+        for ind, data_size in enumerate(['50000','10000','1000']):
+            script_descriptor = open("test.py", encoding ='utf-8')
+            a_script = script_descriptor.read()
+
+            if exp == 'raw':
+                exp_arg = f'{data}_classification_datasize_{data_size}'
+            else:
+                exp_arg = f'{data}_fine_classification_datasize_{data_size}'
+
+            if data == "MNIST":
+                sys.argv = ["test.py",'--experiment',exp_arg,'--dataset',f'{data}',
+                           '--input_dim','28','--input_dim_channel','1']
+            else:
+                sys.argv = ["test.py",'--experiment',exp_arg,'--dataset',f'{data}',
+                           '--input_dim','32','--input_dim_channel','3' ]
+
+            try:
+                print(sys.argv)
+                print('start')
+                exec(a_script)
+                gc.collect()
+            except:
+                print('failed')

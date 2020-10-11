@@ -34,7 +34,7 @@ def train(args, train_loss_list, valid_loss_list):
     start = time.time()
 
     writer = SummaryWriter(f'./runs/{args.experiment}')
-    early_stopping = EarlyStopping(patience= 15, verbose=False, path = f'./parameter/{args.experiment}.pth')
+    early_stopping = EarlyStopping(patience= 10, verbose=False, path = f'./parameter/{args.experiment}.pth')
 
     for e in range(args.epoch):
         print("\n===> epoch %d" % e)
@@ -64,8 +64,8 @@ def train(args, train_loss_list, valid_loss_list):
 
                     for s, val_batch in enumerate(tqdm(args.loader.valid_iter, desc='valid')):
 
-                        feature = batch[0].cuda(args.gpu_device)
-                        # target = batch[1].cuda(args.gpu_device)
+                        feature = val_batch[0].cuda(args.gpu_device)
+                        # target = val_batch[1].cuda(args.gpu_device)
                         pred = args.model(feature)
 
                         v_loss = criterion(pred, feature)

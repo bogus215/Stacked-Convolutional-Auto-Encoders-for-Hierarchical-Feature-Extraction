@@ -34,7 +34,7 @@ def train(args, train_loss_list, valid_loss_list):
     start = time.time()
 
     writer = SummaryWriter(f'./runs/{args.experiment}')
-    early_stopping = EarlyStopping(patience= 15, verbose=True, path = f'./parameter/{args.experiment}.pth')
+    early_stopping = EarlyStopping(patience= 10, verbose=False, path = f'./parameter/{args.experiment}.pth')
 
     for e in range(args.epoch):
         print("\n===> epoch %d" % e)
