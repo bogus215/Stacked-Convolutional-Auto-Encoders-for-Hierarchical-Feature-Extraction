@@ -8,16 +8,25 @@
 - 논문에 소개된 여러 실험을 한번에 돌릴 수 있는 `experiment.py`
 
 ## Paper Fig 1.
-- 논문이 공개한 CAE(convolutional auto-encoder) 모델이 학습한 이미지 필터를 시각화한 그림입니다.  
-- (a),(b),(c),(d) 그림은 `model.py`의 네 가지 모델 `CAE1,CAE2,CAE3,CAR4`를 MNIST 데이터에 순서대로 적용한 것으로 `train_autoencoder.py`를 통해 결과를 재연할 수 있습니다. 
 ----------------------------------
 <div>
   <img width="569" alt="fig1" src="https://user-images.githubusercontent.com/53327766/95677312-9d62dc80-0bff-11eb-943e-71ee8d30fa9d.PNG">
+ </div> 
+
+----------------------------------
+- 논문이 공개한 CAE(convolutional auto-encoder) 모델이 학습한 이미지 필터를 시각화한 그림입니다.  
+- (a),(b),(c),(d) 그림은 `model.py`의 네 가지 모델 `CAE1,CAE2,CAE3,CAR4`를 MNIST 데이터에 순서대로 적용한 것으로 `train_autoencoder.py`를 통해 결과를 재연할 수 있습니다. 
+
+
+## Paper Fig 1. reproduction 
+----------------------------------
+<div>
   <img width="569" alt="fig2" src="https://user-images.githubusercontent.com/53327766/95677435-85d82380-0c00-11eb-916b-72a20c5d6bff.png">
  </div> 
 
 ----------------------------------
-    
+  
+
 ## Paper Fig 2.
 - 논문이 공개한 CAE(convolutional auto-encoder) 모델이 학습한 이미지 필터를 시각화한 그림입니다. 
 - (a),(b),(c),(d) 그림은 `model.py`의 네 가지 모델 `CAE1,CAE2,CAE3,CAR4`를 CIFAR10 데이터에 순서대로 적용한 것으로 `train_autoencoder.py`를 통해 결과를 재연할 수 있습니다.
