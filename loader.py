@@ -1,7 +1,19 @@
 import torchvision.transforms as transforms
 from torchvision.datasets import MNIST , CIFAR10
 from torch.utils.data import DataLoader , random_split , Subset
+import torch
+import numpy as np
 import random
+
+torch.manual_seed(123)
+torch.cuda.manual_seed(123)
+np.random.seed(123)
+random.seed(123)
+torch.backends.cudnn.enabled = False
+torch.backends.cudnn.deterministic = True
+
+
+
 
 class loader():
 

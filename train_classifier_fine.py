@@ -129,7 +129,7 @@ def main():
     parser.add_argument('--batch_size', type=int, default=128, help='batch size for training [default: 128]')
     parser.add_argument("--gpu_device", default=0, type=int, help="the number of gpu to be used")
     parser.add_argument('--printevery', default=100, type=int, help='log , print every % iteration')
-    parser.add_argument('--data_size', default=50000, type=int, help='dataset size(n)')
+    parser.add_argument('--data_size', default=1000, type=int, help='dataset size(n)')
     parser.add_argument('--experiment', type=str, default='CIFAR_temptemp', help='experiment name')
 
     args = parser.parse_args()
