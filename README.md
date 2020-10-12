@@ -52,8 +52,8 @@
 ## Paper Table 1 and 2 with reproduction result 
 ----------------------------------
 <div>
-<img width="569" alt="fig3" src="https://user-images.githubusercontent.com/53327766/95680877-8e882400-0c17-11eb-871e-df0de4737bf3.png">
-<img width="569" alt="fig3" src="https://user-images.githubusercontent.com/53327766/95680878-8fb95100-0c17-11eb-8287-a792771fb945.png">
+<img width="569" alt="fig3" src="https://user-images.githubusercontent.com/53327766/95703059-19edcd80-0c89-11eb-8229-0c7f725d2f77.PNG">
+<img width="569" alt="fig3" src="https://user-images.githubusercontent.com/53327766/95703061-1a866400-0c89-11eb-8b32-a4c75970816e.PNG">
 </div>
  
 ----------------------------------
